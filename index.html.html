@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudio de Mercado — Comando Software Cali 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: #1a1a2e; font-size: 15px; line-height: 1.6; }
+
+  /* NAV */
+  .nav { background: #1a1a2e; color: #fff; padding: 0; position: sticky; top: 0; z-index: 100; display: flex; overflow-x: auto; }
+  .nav a { color: #ccc; text-decoration: none; padding: 14px 20px; font-size: 13px; white-space: nowrap; transition: background 0.2s; }
+  .nav a:hover, .nav a.active { background: #0066cc; color: #fff; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, #1a1a2e 0%, #0066cc 100%); color: #fff; padding: 60px 40px 50px; text-align: center; }
+  .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
+  .hero p { font-size: 16px; opacity: 0.85; max-width: 600px; margin: 0 auto 24px; }
+  .hero-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .hero-tag { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 4px 14px; font-size: 13px; }
+
+  /* LAYOUT */
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+  section { margin-bottom: 50px; }
+  .section-title { font-size: 20px; font-weight: 700; color: #1a1a2e; border-left: 4px solid #0066cc; padding-left: 14px; margin-bottom: 20px; }
+
+  /* CARDS */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .card { background: #fff; border-radius: 12px; padding: 20px; border: 1px solid #e8ecf0; text-align: center; }
+  .card .num { font-size: 28px; font-weight: 700; color: #0066cc; }
+  .card .lbl { font-size: 13px; color: #666; margin-top: 4px; }
+
+  /* TABLES */
+  .table-wrap { background: #fff; border-radius: 12px; border: 1px solid #e8ecf0; overflow: hidden; margin-bottom: 20px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #f8fafc; text-align: left; padding: 10px 14px; font-weight: 600; color: #444; border-bottom: 1px solid #e8ecf0; }
+  td { padding: 10px 14px; border-bottom: 1px solid #f0f3f7; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+
+  /* BADGES */
+  .badge { display: inline-block; font-size: 11px; padding: 2px 9px; border-radius: 20px; font-weight: 600; }
+  .badge-green { background: #d4edda; color: #155724; }
+  .badge-red { background: #f8d7da; color: #721c24; }
+  .badge-amber { background: #fff3cd; color: #856404; }
+  .badge-blue { background: #d1ecf1; color: #0c5460; }
+  .badge-teal { background: #d0f0e8; color: #0a5940; }
+
+  /* INSIGHTS */
+  .insights { display: flex; flex-direction: column; gap: 12px; }
+  .insight { border-radius: 10px; padding: 14px 18px; font-size: 14px; border-left: 4px solid; }
+  .insight.blue { background: #e8f4fd; border-color: #0066cc; color: #1a3a5c; }
+  .insight.green { background: #eafaf1; border-color: #27ae60; color: #1a4731; }
+  .insight.amber { background: #fef9e7; border-color: #f39c12; color: #5a3e00; }
+  .insight.red { background: #fdf2f2; border-color: #e74c3c; color: #5a1a1a; }
+  .insight strong { display: block; margin-bottom: 3px; }
+
+  /* COMPETITOR GRID */
+  .comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .comp-card { background: #fff; border-radius: 12px; border: 1px solid #e8ecf0; padding: 20px; }
+  .comp-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #1a1a2e; }
+  .comp-card.highlight { border: 2px solid #0066cc; }
+  .comp-card.highlight h4 { color: #0066cc; }
+  .comp-stat { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 1px solid #f0f3f7; }
+  .comp-stat:last-child { border-bottom: none; }
+  .comp-stat span:first-child { color: #666; }
+  .comp-stat span:last-child { font-weight: 600; }
+
+  /* BAR */
+  .bar-wrap { background: #e8ecf0; border-radius: 4px; height: 7px; width: 100%; }
+  .bar { height: 7px; border-radius: 4px; }
+  .bar-blue { background: #0066cc; }
+  .bar-green { background: #27ae60; }
+  .bar-red { background: #e74c3c; }
+
+  /* STRATEGY */
+  .strategy { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .strat-card { background: #fff; border-radius: 12px; border: 1px solid #e8ecf0; padding: 20px; }
+  .strat-num { font-size: 32px; font-weight: 700; color: #0066cc; opacity: 0.3; line-height: 1; }
+  .strat-title { font-size: 15px; font-weight: 700; margin: 6px 0; }
+  .strat-desc { font-size: 13px; color: #555; }
+
+  /* FOOTER */
+  footer { background: #1a1a2e; color: #aaa; text-align: center; padding: 30px 20px; font-size: 13px; }
+  footer strong { color: #fff; }
+
+  /* PRIORITY TABLE */
+  .priority-row td:first-child { font-weight: 600; }
+  .rank { display: inline-block; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-size: 12px; font-weight: 700; }
+  .rank-1 { background: #0066cc; color: #fff; }
+  .rank-2 { background: #27ae60; color: #fff; }
+  .rank-3 { background: #f39c12; color: #fff; }
+  .rank-4 { background: #95a5a6; color: #fff; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 22px; }
+    .hero { padding: 40px 20px; }
+    .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#resumen">Resumen</a>
+  <a href="#keywords">Keywords</a>
+  <a href="#competidores">Competidores</a>
+  <a href="#trends">Google Trends</a>
+  <a href="#prioridad">Prioridad</a>
+  <a href="#precios">Precios</a>
+  <a href="#comisiones">Comisiones</a>
+  <a href="#pitch">Pitch de venta</a>
+  <a href="#campo">Trabajo de campo</a>
+  <a href="#estrategia">Estrategia</a>
+</nav>
+
+<div class="hero">
+  <h1>Estudio de Mercado Digital</h1>
+  <p>Comando Software — Fuerza de Ventas Cali 2026</p>
+  <div class="hero-tags">
+    <span class="hero-tag">SEMrush</span>
+    <span class="hero-tag">Google Trends</span>
+    <span class="hero-tag">Análisis competitivo</span>
+    <span class="hero-tag">Valle del Cauca</span>
+    <span class="hero-tag">Abril 2026</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- RESUMEN EJECUTIVO -->
+  <section id="resumen">
+    <div class="section-title">Resumen ejecutivo</div>
+    <div class="cards">
+      <div class="card"><div class="num">0</div><div class="lbl">búsquedas activas en Google Trends para los 3 términos principales</div></div>
+      <div class="card"><div class="num">3</div><div class="lbl">competidores analizados: Siigo, Alegra, Loggro</div></div>
+      <div class="card"><div class="num">0</div><div class="lbl">competidores con presencia específica en Cali</div></div>
+      <div class="card"><div class="num">KD 15%</div><div class="lbl">dificultad keyword "software restaurante Colombia" — muy baja</div></div>
+    </div>
+    <div class="insights">
+      <div class="insight blue"><strong>Hallazgo principal</strong>El mercado no busca este tipo de software en Google. La demanda es latente, no activa. Esto valida 100% la estrategia de fuerza de ventas directa con prospección vía Google Maps + n8n.</div>
+      <div class="insight green"><strong>Oportunidad de Cali</strong>Ninguno de los 3 competidores (Siigo, Alegra, Loggro) tiene presencia específica en Cali ni en Valle del Cauca. Comando puede ser el primer jugador local con fuerza de ventas dedicada en la ciudad.</div>
+      <div class="insight amber"><strong>Nicho recomendado para arrancar</strong>Restaurantes → Retail → Hotelería → Empresarial. El ciclo de venta más corto y la urgencia tributaria de 2025-2026 hacen de restaurantes el punto de entrada más eficiente.</div>
+    </div>
+  </section>
+
+  <!-- KEYWORDS -->
+  <section id="keywords">
+    <div class="section-title">Análisis de keywords — SEMrush</div>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Keyword</th>
+          <th>Volumen/mes</th>
+          <th>KD %</th>
+          <th>CPC</th>
+          <th>Intención</th>
+          <th>Prioridad</th>
+        </tr>
+        <tr>
+          <td>software para restaurantes colombia</td>
+          <td>90</td>
+          <td><div class="bar-wrap"><div class="bar bar-green" style="width:15%"></div></div> 15%</td>
+          <td>$1.51</td>
+          <td><span class="badge badge-blue">Comercial</span></td>
+          <td><span class="badge badge-green">Alta</span></td>
+        </tr>
+        <tr>
+          <td>software punto de venta Colombia</td>
+          <td>n/a</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="badge badge-blue">Comercial</span></td>
+          <td><span class="badge badge-amber">Media</span></td>
+        </tr>
+        <tr>
+          <td>facturación electrónica pyme Colombia</td>
+          <td>n/a</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="badge badge-blue">Comercial</span></td>
+          <td><span class="badge badge-amber">Media</span></td>
+        </tr>
+        <tr>
+          <td>Siigo software</td>
+          <td>alto</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="badge badge-teal">Navegacional</span></td>
+          <td><span class="badge badge-red">Referencia</span></td>
+        </tr>
+        <tr>
+          <td>sistema pos Colombia</td>
+          <td>n/a</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="badge badge-blue">Comercial</span></td>
+          <td><span class="badge badge-green">Alta</span></td>
+        </tr>
+        <tr>
+          <td>software restaurante Cali ⭐</td>
+          <td>sin datos</td>
+          <td><div class="bar-wrap"><div class="bar bar-green" style="width:15%"></div></div> ~15%</td>
+          <td>—</td>
+          <td><span class="badge badge-blue">Comercial</span></td>
+          <td><span class="badge badge-green">Máxima</span></td>
+        </tr>
+      </table>
+    </div>
+    <div class="insights">
+      <div class="insight green"><strong>Oportunidad SEO sin costo</strong>La keyword "software restaurante Cali" tiene KD estimado ~15% — casi sin competencia. Crear una página dedicada en el sitio de Comando puede generar tráfico orgánico sin pagar pauta.</div>
+      <div class="insight amber"><strong>Volúmenes bajos — no es canal principal</strong>Los volúmenes de búsqueda son muy bajos para Colombia. El SEO debe complementar, no reemplazar, la fuerza de ventas directa.</div>
+    </div>
+  </section>
+
+  <!-- COMPETIDORES -->
+  <section id="competidores">
+    <div class="section-title">Análisis competitivo — Siigo, Alegra, Loggro</div>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <h4>Siigo</h4>
+        <div class="comp-stat"><span>Tráfico CO/mes</span><span>1.27M</span></div>
+        <div class="comp-stat"><span>Páginas indexadas</span><span>4,557</span></div>
+        <div class="comp-stat"><span>Pauta mensual</span><span>Moderada</span></div>
+        <div class="comp-stat"><span>Visitas POS</span><span>45,104</span></div>
+        <div class="comp-stat"><span>Foco restaurantes</span><span><span class="badge badge-red">No</span></span></div>
+        <div class="comp-stat"><span>Presencia Cali</span><span><span class="badge badge-red">No</span></span></div>
+      </div>
+      <div class="comp-card">
+        <h4>Alegra</h4>
+        <div class="comp-stat"><span>Tráfico CO/mes</span><span>175K</span></div>
+        <div class="comp-stat"><span>Páginas indexadas</span><span>3,005</span></div>
+        <div class="comp-stat"><span>Pauta mensual</span><span>~$47K USD</span></div>
+        <div class="comp-stat"><span>Visitas POS</span><span>16,283</span></div>
+        <div class="comp-stat"><span>Foco restaurantes</span><span><span class="badge badge-red">No</span></span></div>
+        <div class="comp-stat"><span>Presencia Cali</span><span><span class="badge badge-red">No</span></span></div>
+      </div>
+      <div class="comp-card">
+        <h4>Loggro ⚠️ más peligroso</h4>
+        <div class="comp-stat"><span>Tráfico CO/mes</span><span>83K</span></div>
+        <div class="comp-stat"><span>Páginas indexadas</span><span>905</span></div>
+        <div class="comp-stat"><span>Pauta mensual</span><span>~$1K (mínima)</span></div>
+        <div class="comp-stat"><span>Visitas restobar</span><span>22,172</span></div>
+        <div class="comp-stat"><span>Foco restaurantes</span><span><span class="badge badge-amber">Parcial</span></span></div>
+        <div class="comp-stat"><span>Presencia Cali</span><span><span class="badge badge-red">No</span></span></div>
+      </div>
+      <div class="comp-card highlight">
+        <h4>Comando Software ✅</h4>
+        <div class="comp-stat"><span>Tráfico CO/mes</span><span>—</span></div>
+        <div class="comp-stat"><span>Pauta mensual</span><span>$0</span></div>
+        <div class="comp-stat"><span>Foco restaurantes</span><span><span class="badge badge-teal">Puede ser #1</span></span></div>
+        <div class="comp-stat"><span>Presencia Cali</span><span><span class="badge badge-teal">Puede ser #1</span></span></div>
+        <div class="comp-stat"><span>Soporte local</span><span><span class="badge badge-green">Sí</span></span></div>
+        <div class="comp-stat"><span>Ventaja</span><span><span class="badge badge-green">Local + Directo</span></span></div>
+      </div>
+    </div>
+
+    <div class="section-title" style="font-size:16px; margin-top:30px;">Páginas de producto con mayor tráfico por competidor</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Competidor</th><th>Página</th><th>Visitas/mes</th><th>Intención</th><th>Tendencia</th></tr>
+        <tr><td>Siigo</td><td>sistema-pos</td><td>45,104</td><td><span class="badge badge-blue">Comercial</span></td><td>↑ +3,360</td></tr>
+        <tr><td>Siigo</td><td>facturacion-electronica</td><td>2,516</td><td><span class="badge badge-blue">Comercial</span></td><td>↓ -247</td></tr>
+        <tr><td>Alegra</td><td>colombia/pos</td><td>16,283</td><td><span class="badge badge-blue">Comercial</span></td><td>↑ +170</td></tr>
+        <tr><td>Alegra</td><td>facturacion-electronica</td><td>6,302</td><td><span class="badge badge-blue">Comercial</span></td><td>↓ -33</td></tr>
+        <tr><td>Loggro</td><td>restobar.loggro.com</td><td>22,172</td><td><span class="badge badge-blue">Comercial</span></td><td>↑ +11,185</td></tr>
+        <tr><td>Loggro</td><td>sistema-pos</td><td>396</td><td><span class="badge badge-blue">Comercial</span></td><td>↑ +236</td></tr>
+      </table>
+    </div>
+
+    <div class="insights">
+      <div class="insight red"><strong>Loggro: el rival más directo en restaurantes</strong>Loggro tiene restobar.loggro.com con 22K visitas/mes creciendo (+11K en el período). Es el único competidor con nicho específico en restaurantes. Diferenciarse con precio local, soporte presencial en Cali y demos en sitio.</div>
+      <div class="insight green"><strong>Alegra gasta $47K/mes en pauta — no competir ahí</strong>La estrategia de Comando no debe incluir Google Ads. La fuerza de ventas directa + n8n Maps es el canal correcto para esta etapa.</div>
+      <div class="insight blue"><strong>Siigo domina con contenido tributario, no con demos</strong>El 95% del tráfico de Siigo viene de blog (UVT, retención, salario mínimo). Ese es un canal que les tomó años construir. Comando no necesita replicarlo — su ventaja es la presencia física en Cali.</div>
+    </div>
+  </section>
+
+  <!-- GOOGLE TRENDS -->
+  <section id="trends">
+    <div class="section-title">Google Trends — Valle del Cauca</div>
+    <div class="cards">
+      <div class="card"><div class="num" style="color:#e74c3c">~0</div><div class="lbl">"pos restaurante Colombia"</div></div>
+      <div class="card"><div class="num" style="color:#e74c3c">~0</div><div class="lbl">"facturación electrónica restaurante"</div></div>
+      <div class="card"><div class="num" style="color:#f39c12">2</div><div class="lbl">picos de "sistema pos Colombia" en 12 meses</div></div>
+      <div class="card"><div class="num" style="color:#27ae60">Valle</div><div class="lbl">uno de 3 dptos. con señal activa en Colombia</div></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Término buscado</th><th>Tendencia 12 meses</th><th>Picos detectados</th><th>Valle del Cauca</th></tr>
+        <tr>
+          <td>pos restaurante Colombia</td>
+          <td><span class="badge badge-red">Cero</span></td>
+          <td>Ninguno</td>
+          <td><span class="badge badge-green">Señal activa</span></td>
+        </tr>
+        <tr>
+          <td>facturación electrónica restaurante</td>
+          <td><span class="badge badge-red">Cero</span></td>
+          <td>Ninguno</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>sistema pos Colombia</td>
+          <td><span class="badge badge-amber">Muy bajo</span></td>
+          <td>Mayo 2025, Sep 2025</td>
+          <td><span class="badge badge-green">Señal activa</span></td>
+        </tr>
+      </table>
+    </div>
+    <div class="insights">
+      <div class="insight red"><strong>Demanda latente, no activa</strong>Los 3 términos tienen volumen casi cero en Google Trends. El dueño de restaurante o tienda en Cali no busca "software POS" en Google — espera que alguien llegue a ofrecérselo.</div>
+      <div class="insight green"><strong>Valle del Cauca es territorio válido</strong>Aparece como uno de los 3 únicos departamentos con señal (junto con Bogotá y Sucre). Hay interés real, simplemente no alcanza escala nacional.</div>
+      <div class="insight amber"><strong>Ventanas de oportunidad: mayo y septiembre</strong>Los picos ocurrieron en cierre de período contable. Activar campañas de visitas y demos presenciales en esas fechas puede multiplicar la tasa de conversión.</div>
+    </div>
+  </section>
+
+  <!-- PRIORIDAD DE MÓDULOS -->
+  <section id="prioridad">
+    <div class="section-title">Prioridad de módulos para la fuerza de ventas</div>
+    <div class="table-wrap">
+      <table class="priority-row">
+        <tr>
+          <th>#</th>
+          <th>Módulo</th>
+          <th>Razón principal</th>
+          <th>Ciclo de venta</th>
+          <th>Potencial Cali</th>
+        </tr>
+        <tr>
+          <td><span class="rank rank-1">1</span></td>
+          <td>Restaurantes</td>
+          <td>Densidad alta (Granada, Peñón, Chipichape), urgencia tributaria 2025-2026, material publicitario listo</td>
+          <td><span class="badge badge-green">Corto</span></td>
+          <td><span class="badge badge-green">Muy alto</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank rank-2">2</span></td>
+          <td>Retail</td>
+          <td>Decisión individual (dueño decide solo), droguerías y tiendas de ropa abundantes, cierre rápido</td>
+          <td><span class="badge badge-green">Corto</span></td>
+          <td><span class="badge badge-green">Alto</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank rank-3">3</span></td>
+          <td>Hotelería</td>
+          <td>Nicho especializado, menor competencia, ticket más alto</td>
+          <td><span class="badge badge-amber">Medio</span></td>
+          <td><span class="badge badge-amber">Medio</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank rank-4">4</span></td>
+          <td>Empresarial</td>
+          <td>Abogados, ingenieros: mayor capacidad de pago pero ciclo largo y más demos requeridas</td>
+          <td><span class="badge badge-red">Largo</span></td>
+          <td><span class="badge badge-amber">Medio</span></td>
+        </tr>
+      </table>
+    </div>
+    <div class="insights">
+      <div class="insight blue"><strong>Nicho salud: validar antes de atacar</strong>Luz Viviana mencionó el sector salud como oportunidad. Requiere verificar si el módulo actual soporta RIPS en JSON. Si es viable, sería un diferenciador enorme — nadie en ese segmento está siendo contactado directamente.</div>
+    </div>
+  </section>
+
+  <!-- PRECIOS -->
+  <section id="precios">
+    <div class="section-title">Comparativa de precios — Suroccidente 2026</div>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Software</th>
+          <th>Plan básico/mes</th>
+          <th>Nómina</th>
+          <th>2do punto de venta</th>
+          <th>Soporte</th>
+          <th>Ventaja Comando</th>
+        </tr>
+        <tr>
+          <td><strong>Siigo</strong></td>
+          <td>~$80.000–$150.000</td>
+          <td><span class="badge badge-red">Add-on extra</span></td>
+          <td><span class="badge badge-red">Cobro adicional</span></td>
+          <td>Call center Bogotá</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Alegra</strong></td>
+          <td>~$60.000–$120.000</td>
+          <td><span class="badge badge-red">Add-on extra</span></td>
+          <td><span class="badge badge-red">Cobro adicional</span></td>
+          <td>Remoto / chat</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Loggro</strong></td>
+          <td>~$90.000–$160.000</td>
+          <td><span class="badge badge-amber">Limitado</span></td>
+          <td><span class="badge badge-amber">Plan superior</span></td>
+          <td>Remoto</td>
+          <td>—</td>
+        </tr>
+        <tr style="background:#eafaf1">
+          <td><strong>Comando Software ⭐</strong></td>
+          <td><strong>$100.000–$150.000 equiv.</strong></td>
+          <td><span class="badge badge-green">Hasta 10 empleados incluida</span></td>
+          <td><span class="badge badge-green">2 puntos incluidos</span></td>
+          <td><span class="badge badge-green">Armenia (3h de Cali)</span></td>
+          <td><span class="badge badge-green">20–30% más económico anual</span></td>
+        </tr>
+      </table>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="num">$1.2M</div><div class="lbl">Plan Empresarial (anual)</div></div>
+      <div class="card"><div class="num">$1.6M</div><div class="lbl">Plan Retail (anual)</div></div>
+      <div class="card"><div class="num">$1.8M</div><div class="lbl">Plan Restaurante ⭐ (anual)</div></div>
+      <div class="card"><div class="num">Offline</div><div class="lbl">Funciona sin internet — diferenciador clave en el Valle</div></div>
+    </div>
+    <div class="insights">
+      <div class="insight green"><strong>Argumento ganador de precio</strong>Comando es ~20–30% más económico que Siigo y Alegra en el acumulado anual, e incluye nómina hasta 10 empleados y 2 puntos de venta sin cobro adicional. Cuando el cliente pregunte "¿por qué Comando y no Siigo?", la respuesta es: precio transparente, sin costos ocultos, y soporte a 3 horas.</div>
+      <div class="insight amber"><strong>Verificar antes de salir a vender</strong>Confirmar con Diego: ¿Los folios de facturación electrónica son ilimitados? ¿La firma digital está incluida en el precio anual? Si ambas respuestas son sí, tienen un argumento para "noquear" a la competencia que cobra extra por eso.</div>
+      <div class="insight blue"><strong>Modo offline = diferenciador en zonas del Valle</strong>En centros comerciales de Cali (14 de Calima), Calima Darién, Buga y municipios con internet inestable, el modo offline es el "seguro de vida del negocio". Ningún competidor nacional lo tiene como argumento local.</div>
+    </div>
+  </section>
+
+  <!-- COMISIONES -->
+  <section id="comisiones">
+    <div class="section-title">Modelo de comisiones e ingresos del equipo</div>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Plan</th>
+          <th>Precio venta</th>
+          <th>Comisión 20%</th>
+          <th>+ Setup Fee (sugerido)</th>
+          <th>Total por venta</th>
+        </tr>
+        <tr>
+          <td>Empresarial</td>
+          <td>$1.200.000</td>
+          <td>$240.000</td>
+          <td>$400.000–$600.000</td>
+          <td><strong>$640.000–$840.000</strong></td>
+        </tr>
+        <tr>
+          <td>Retail</td>
+          <td>$1.600.000</td>
+          <td>$320.000</td>
+          <td>$400.000–$600.000</td>
+          <td><strong>$720.000–$920.000</strong></td>
+        </tr>
+        <tr style="background:#eafaf1">
+          <td><strong>Restaurante ⭐</strong></td>
+          <td>$1.800.000</td>
+          <td><strong>$360.000</strong></td>
+          <td>$500.000–$600.000</td>
+          <td><strong>$860.000–$960.000</strong></td>
+        </tr>
+      </table>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="num">28–30</div><div class="lbl">ventas/mes para llegar a $10M en comisiones (solo 20%)</div></div>
+      <div class="card"><div class="num">12</div><div class="lbl">ventas/mes para $10M si se cobra implementación</div></div>
+      <div class="card"><div class="num">2/sem</div><div class="lbl">cierres por persona = meta realista en campo</div></div>
+      <div class="card"><div class="num">$22.4M</div><div class="lbl">ingreso total equipo de 4 con 32 cierres/mes + setup fee</div></div>
+    </div>
+    <div class="insights">
+      <div class="insight red"><strong>El 20% solo no es suficiente para 4 personas</strong>Con solo comisión, 28–30 ventas mensuales es un trabajo agotador. La clave es negociar con Comando la autonomía para cobrar el "Setup Fee" (configuración + capacitación) directamente al cliente. Ese dinero es 100% utilidad del equipo.</div>
+      <div class="insight green"><strong>El negocio real está en la recurrencia</strong>Si en el primer año venden 100 licencias, el año 2 reciben ~$36.000.000 solo en renovaciones sin vender nada nuevo. Ese es el "oro" del modelo. La renovación anual + IPC hace el negocio estable a largo plazo.</div>
+      <div class="insight blue"><strong>Negociar escalonamiento de comisión</strong>Preguntar a Diego: "Si llegamos a 50 o 100 licencias en el Valle, ¿sube nuestra comisión al 25% o 30%?" Al ser exclusivos del suroccidente, ese escalonamiento es justo por el esfuerzo de abrir mercado en territorio nuevo.</div>
+    </div>
+  </section>
+
+  <!-- PITCH DE VENTA -->
+  <section id="pitch">
+    <div class="section-title">Pitch de venta — Narrativa del héroe</div>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <h4 style="color:#e74c3c">El Villano</h4>
+        <p style="font-size:13px;color:#555;line-height:1.6">El desorden, el miedo a la DIAN y la caída del internet que bloquea las ventas. El dueño del restaurante lleva las cuentas en Excel o en un cuaderno. Cada vez que la DIAN cambia algo, entra en pánico.</p>
+      </div>
+      <div class="comp-card">
+        <h4 style="color:#0066cc">El Héroe</h4>
+        <p style="font-size:13px;color:#555;line-height:1.6">El empresario que quiere hacer crecer su negocio pero está atrapado en papeles y en el miedo al incumplimiento. Quiere control, claridad y tranquilidad para enfocarse en vender más.</p>
+      </div>
+      <div class="comp-card highlight">
+        <h4>El Guía (Tú + Comando)</h4>
+        <p style="font-size:13px;color:#555;line-height:1.6">Ofreces una herramienta que funciona "con o sin internet", entiende el negocio local y tiene soporte a 3 horas. No vendes software — vendes tranquilidad y control.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Objeción del cliente</th><th>Respuesta con datos reales</th></tr>
+        <tr><td>"Pero Siigo es más famoso"</td><td>Siigo te cobra nómina y 2do punto de venta aparte. Con Comando pagas un precio fijo anual que incluye todo — sin sorpresas a fin de mes.</td></tr>
+        <tr><td>"¿Y si se cae el internet?"</td><td>Comando funciona en modo offline. Sigues facturando. Cuando vuelve el internet, sincroniza automático. Ningún competidor te da eso con soporte local.</td></tr>
+        <tr><td>"¿Quién me ayuda si tengo problemas?"</td><td>Armenia está a 3 horas de Cali. Somos sus aliados exclusivos en el Valle — no un call center en Bogotá que no sabe dónde queda tu negocio.</td></tr>
+        <tr><td>"Es muy caro"</td><td>$1.800.000 al año son $150.000 al mes. Incluye facturación electrónica, nómina de hasta 10 empleados y 2 puntos de venta. Siigo te cobra más solo por la nómina.</td></tr>
+        <tr><td>"Ya tengo algo"</td><td>¿Cuánto te está costando ese "algo" en tiempo perdido, errores y miedo a la DIAN? Te hacemos una demostración en tu negocio y decides tú.</td></tr>
+      </table>
+    </div>
+    <div class="insights">
+      <div class="insight blue"><strong>Frase ancla para el pitch</strong>"Software de la región para la región. No es un software bogotano ni gringo que no sabe qué pasa cuando se cae la fibra óptica en el Valle. Somos vecinos."</div>
+      <div class="insight green"><strong>El Caballo de Troya</strong>Una vez que el cliente compra el software, ofrecerle: diseño de menú digital + gestión de redes sociales a precio preferencial. El software es la puerta de entrada a un cliente recurrente de la agencia.</div>
+    </div>
+  </section>
+
+  <!-- TRABAJO DE CAMPO -->
+  <section id="campo">
+    <div class="section-title">Plan de trabajo de campo — Equipo de 4</div>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <h4>Socio 1 — El Técnico</h4>
+        <div class="comp-stat"><span>Rol</span><span>Experto en la herramienta</span></div>
+        <div class="comp-stat"><span>Función</span><span>Demo + soporte postventa</span></div>
+        <div class="comp-stat"><span>Valor</span><span>Cobrar setup fee</span></div>
+      </div>
+      <div class="comp-card">
+        <h4>Socio 2 — El Comercial</h4>
+        <div class="comp-stat"><span>Zona</span><span>Granada, San Antonio, Ciudad Jardín</span></div>
+        <div class="comp-stat"><span>Foco</span><span>Restaurantes ($1.8M)</span></div>
+        <div class="comp-stat"><span>Meta</span><span>2 cierres/semana</span></div>
+      </div>
+      <div class="comp-card">
+        <h4>Socio 3 — Alianzas</h4>
+        <div class="comp-stat"><span>Target</span><span>Contadores independientes</span></div>
+        <div class="comp-stat"><span>Acción</span><span>Incentivo por referido</span></div>
+        <div class="comp-stat"><span>Por qué</span><span>El contador decide el software</span></div>
+      </div>
+      <div class="comp-card highlight">
+        <h4>Socio 4 — Marketing 360</h4>
+        <div class="comp-stat"><span>Rol</span><span>Narrativa + leads digitales</span></div>
+        <div class="comp-stat"><span>Canal</span><span>Redes sociales + n8n Maps</span></div>
+        <div class="comp-stat"><span>Meta</span><span>500 prospectos/mes</span></div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Zona</th><th>Módulo prioritario</th><th>Plan</th><th>Perfil del cliente</th></tr>
+        <tr><td>Granada, El Peñón, San Antonio</td><td>Restaurantes</td><td>$1.8M</td><td>Restaurante formal, cafetería, dark kitchen</td></tr>
+        <tr><td>Centro Cali, San Andresito</td><td>Retail</td><td>$1.6M</td><td>Dueño de local con 2 cajas, inventario amplio</td></tr>
+        <tr><td>Chipichape, Ciudad Jardín</td><td>Retail + Restaurantes</td><td>$1.6M–$1.8M</td><td>Tienda de ropa, ferretería, restaurante de patio</td></tr>
+        <tr><td>Calima, Buga, Jamundí</td><td>Restaurantes + Hotelería</td><td>$1.8M</td><td>Hotel boutique, restaurante turístico sin internet estable</td></tr>
+        <tr><td>Popayán, Pasto</td><td>Todos los módulos</td><td>$1.2M–$1.8M</td><td>Expansión fase 2 — territorio virgen</td></tr>
+      </table>
+    </div>
+    <div class="insights">
+      <div class="insight green"><strong>Meta semanal por persona</strong>10–15 visitas diarias → 2 cierres por semana → 8 cierres semanales equipo → 32 cierres mes. Comisión base: ~$9.6M. Con setup fee ($400k c/u): +$12.8M. Total equipo: $22.4M/mes.</div>
+      <div class="insight amber"><strong>Llevar siempre tablet con demo instalada</strong>En el suroccidente "ver para creer" es la regla de oro. Si el cliente ve que puede facturar desde su celular en 30 segundos, la venta está medio cerrada. Sin demo en vivo, la tasa de cierre cae drásticamente.</div>
+    </div>
+  </section>
+
+  <!-- ESTRATEGIA -->
+  <section id="estrategia">
+    <div class="section-title">Plan de acción recomendado</div>
+    <div class="strategy">
+      <div class="strat-card">
+        <div class="strat-num">01</div>
+        <div class="strat-title">Prospección con n8n + Google Maps</div>
+        <div class="strat-desc">Extraer restaurantes y tiendas retail de Granada, El Peñón, Chipichape, Barrio el Cedro. Guardar en Google Sheets con nombre, teléfono, dirección y email.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-num">02</div>
+        <div class="strat-title">Contacto directo y demos presenciales</div>
+        <div class="strat-desc">Llamar o visitar directamente. El mercado no llega por Google — hay que ir donde está. Priorizar visitas en mayo y septiembre (picos de interés detectados).</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-num">03</div>
+        <div class="strat-title">Página SEO local sin costo</div>
+        <div class="strat-desc">Crear página dedicada "software para restaurantes en Cali" con KD 15%. Sin pauta. Ningún competidor tiene esta página — Comando puede aparecer primero en Google.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-num">04</div>
+        <div class="strat-title">Diferenciador: soporte local presencial</div>
+        <div class="strat-desc">Siigo, Alegra y Loggro son remotos. Comando está en Cali. Ese argumento de venta ("somos locales, venimos a tu negocio") es difícil de replicar para competidores nacionales.</div>
+      </div>
+    </div>
+
+    <div class="section-title" style="font-size:16px; margin-top:10px;">Herramientas del estudio utilizadas</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Herramienta</th><th>Uso</th><th>Hallazgo clave</th></tr>
+        <tr><td>SEMrush — Keyword Magic Tool</td><td>Volumen y dificultad de keywords</td><td>KD 15% para "software restaurante Colombia"</td></tr>
+        <tr><td>SEMrush — Domain Overview</td><td>Análisis de Siigo, Alegra, Loggro</td><td>Nadie tiene presencia específica en Cali</td></tr>
+        <tr><td>Google Trends</td><td>Demanda real por región</td><td>Valle del Cauca: 1 de 3 dptos. con señal activa</td></tr>
+        <tr><td>n8n + Google Maps</td><td>Prospección automatizada</td><td>En implementación — extracción por zonas de Cali</td></tr>
+        <tr><td>Meta Ads Library</td><td>Publicidad de competidores</td><td>Pendiente</td></tr>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Comando Software — Estudio de Mercado Digital Cali 2026</strong><br>
+  Elaborado con SEMrush · Google Trends · Análisis competitivo · Abril 2026
+</footer>
+
+</body>
+</html>
